@@ -1,0 +1,12 @@
+body {
+    font-family: 'Lato', 'sans-serif';
+}
+
+.container {
+    padding-top: 100px !important;
+}
+
+.profile {
+    min-height: 300px;
+    display: inline-block;
+}
