@@ -1,0 +1,93 @@
+<div class="container" style="padding: 30px">
+    <div class="row">
+        <div class="panel panel-primary filterable">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col col-xs-3">
+                        <h2 class="panel-title">Candidates</h2>
+                    </div>
+                    <div class="col col-xs-3 text-right">
+                        <button type="button" (click)="getTwoYearExperienceCandidate()" class="btn btn-sm btn-secondary btn-create" style="color: black">
+              Get Two Year Experience Candidates
+            </button>
+                    </div>
+                    <div class="col col-xs-3 text-right">
+                        <button type="button" (click)="removeCandidateFromDevelopment()" class="btn btn-sm btn-secondary btn-create" style="color: black">
+              Remove Candidates of Development Department
+            </button>
+                    </div>
+                    <div class="col col-xs-3 text-right">
+                        <button type="button" (click)="getDistinctValues()" class="btn btn-sm btn-secondary btn-create" style="color: black; margin-right: 20px">
+              Get Distinct Department with Count
+            </button>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <input type="text" class="form-control" id="dev-table-filter" (keyup)="filterByText($event.target.value)" data-action="filter" data-filters="#dev-table" placeholder="Search By Name" />
+            </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">
+                            ID
+                            <a (click)="sortData('id')"><span class="glyphicon glyphicon-sort"></span
+              ></a>
+                        </th>
+                        <th scope="col">
+                            Name
+                            <a (click)="sortData('name')"><span class="glyphicon glyphicon-sort"></span
+              ></a>
+                        </th>
+                        <th scope="col">
+                            Department
+                            <a (click)="sortData('department')"><span class="glyphicon glyphicon-sort"></span
+              ></a>
+                        </th>
+                        <th scope="col">
+                            Joining Date
+                            <a (click)="sortJoingDate()"><span class="glyphicon glyphicon-sort"></span
+              ></a>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let candidate of candidates">
+                    <tr [routerLink]="['/employee-details/' + candidate.id]" style="cursor: pointer">
+                        <th scope="row">{{ candidate.id }}</th>
+                        <td>{{ candidate.name }}</td>
+                        <td>{{ candidate.department }}</td>
+                        <td>{{ candidate.joining_date }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="container" *ngIf="distictValues">
+    <div class="row">
+        <div class="panel panel-primary filterable">
+            <div class="panel-heading">
+                <h3 class="panel-title">Department and Candidate Count</h3>
+            </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Department</th>
+                        <th scope="col">Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let key of objectKeys(distictValues)">
+                        <th scope="row">{{ key }}</th>
+                        <td>{{ distictValues[key] }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
